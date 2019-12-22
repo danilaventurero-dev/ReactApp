@@ -1,11 +1,8 @@
 import {USER_GET} from './const';
 
 const initialState = {
-    data:  null,
-    error: null,
-    success: null,
-    errorMessage: '',
-    loading: false,
+    items:  [],
+    error: '',
 };
 
 const getReducer = (prevState = initialState, action) =>    {
@@ -14,9 +11,6 @@ const getReducer = (prevState = initialState, action) =>    {
             return{
                 data: action.payload,
                 error: null,
-                success: null,
-                errorMessage: null,
-                loading:false
             };
     
         default:

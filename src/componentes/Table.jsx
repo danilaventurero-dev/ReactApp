@@ -1,17 +1,19 @@
 import React from 'react';
 
-const Table = ({users}) => {
-    return(
-        <table>
+const Table = ({ items }) => {
+    return (
+        <table className="table">
             <tbody>
-                {   users.map(user  => (
-                    <Tr key={user.id} >
-                        <td>{user.id}</td>
-                        <td>{user.name}</td>
-                        <td>{ user.status ? 'completada' : 'por completar' }</td>
-                    </Tr> 
+                {items.map(item => (
+                    <tr key={item}>
+                        <td>{item}</td>
+                        <td>{item}</td>
+                        <td>{item ? 'completada' : 'por completar'}</td>
+                    </tr>
                 ))}
             </tbody>
         </table>
-    )
+    );
 }
+
+export default Table;

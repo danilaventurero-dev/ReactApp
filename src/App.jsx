@@ -1,12 +1,13 @@
 import React from 'react';
 //import './App.css';
-import {Provider} from 'react-redux'
-import {store} from './store'
+import {Provider} from 'react-redux';
+import store from './store';
+import Home from './views/Home' ;
 
 function App() {
   return (
-    <Provider store='store'>
-      
+    <Provider store={store}>
+      <Home />
     </Provider>
   );
 }
