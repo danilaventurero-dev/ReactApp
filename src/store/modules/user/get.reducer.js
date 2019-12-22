@@ -1,8 +1,13 @@
 import {USER_GET} from './const';
 
 const initialState = {
-    items:  [],
-    error: '',
+    items:  [
+        {   
+            id:123, 
+            text:'hello', 
+            completed: false
+        }
+    ]
 };
 
 const getReducer = (prevState = initialState, action) =>    {

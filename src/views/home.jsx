@@ -1,23 +1,24 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Table from '../componentes/Table';
+import { Container } from 'reactstrap';
 
 const Home = (props) => {
     const {
-        items,
+        items
     } = props;
     return (
-        <div className="home">
+        <Container >
             <Table
                 items={items}
             />
-        </div>
+        </Container>
     );
 };
 
-// simplemente se retorna la parte de los todos al componente
-const mapStateToProps = state => state.todos;
+// simplemente se retorna la parte de los items al componente
+const mapStateToProps = state => state.items;
 
 export default connect(
-    mapStateToProps,
+    mapStateToProps
 )(Home);

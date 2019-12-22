@@ -1,18 +1,26 @@
-import React from 'react';
+import React  from 'react';
+import { Table as TableRS } from 'reactstrap';
 
 const Table = ({ items }) => {
     return (
-        <table className="table">
+        <TableRS striped>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
             <tbody>
                 {items.map(item => (
-                    <tr key={item}>
-                        <td>{item}</td>
-                        <td>{item}</td>
-                        <td>{item ? 'completada' : 'por completar'}</td>
+                    <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.id}</td>
+                        <td>{item.id ? 'completada' : 'por completar'}</td>
                     </tr>
                 ))}
             </tbody>
-        </table>
+        </TableRS>
     );
 }
 
