@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {connect} from 'react-redux';
 import Table from '../componentes/Table';
 import { Container } from 'reactstrap';
+//import { getAllActionsAsyncCreator as getAll } from '../store/modules/user/get.action';
 
 const Home = (props) => {
     const {
