@@ -8,14 +8,16 @@ const Table = ({ items }) => {
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Edad</th>
+                    <th>Email</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 {items.map(item => (
                     <tr key={item.id}>
                         <td>{item.id}</td>
-                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.email}</td>
                         <td>{item.id ? 'completada' : 'por completar'}</td>
                     </tr>
                 ))}

@@ -9,8 +9,10 @@ const getActionCreator = (data) =>  ({
 
 export const getActionsAsyncCreator = () => {
     return (dispatch, getStore) => {
+
         getService().then(data => {
             dispatch(getActionCreator(data.data));
+        
         }).catch(err => {
             console.log(err);
         })

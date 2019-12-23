@@ -10,7 +10,7 @@ export const getService = () => {
                 
             }
         }).then(data => {
-            resolve(data);
+            resolve(data.data);
         }).catch(err => reject(err.message));
     })
 }
