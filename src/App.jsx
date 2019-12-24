@@ -14,7 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Route path="/" exact component={UserList} />
+        <Route path="/" exact component={Home} />
         <PrivateRoute path="/UserList" exact component={UserList} />
       </Router>
     </Provider>
