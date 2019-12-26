@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import PrivateRoute from './componentes/privateRoute/privateRoute';
 import store from './store';
 import Home from './views/home' ;
+import Registro from './views/Registro' ;
 import UserList from './views/userList' ;
 //import Login from './views/login' ;
 
@@ -15,6 +16,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Route path="/" exact component={Home} />
+        <Route path="/Registro" exact component={Registro} />
         <PrivateRoute path="/UserList" exact component={UserList} />
       </Router>
     </Provider>

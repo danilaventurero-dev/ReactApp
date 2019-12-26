@@ -8,6 +8,7 @@ const Example = (props) => {
     <Container className="themed-container">
         <Form>
         <Col sm={{ size: '6', offset: 3 }}>
+        <h3 className="display-1" >Inicie Sesion</h3>
             <FormGroup>
                 <Label for="exampleEmail">Correo Electronico</Label>
                 <Input type="email" name="email" id="Em" placeholder="Email" />
@@ -23,7 +24,7 @@ const Example = (props) => {
         <Button>Login</Button>
         <FormText >
             <label htmlFor="">¿Todavida no tienes cuenta?</label> 
-            <NavLink to="/UserList" activeClassName="mi-link-activo"> Registrate!</NavLink>
+            <NavLink to="/Registro" activeClassName="mi-link-activo"> Registrate!</NavLink>
         </FormText>
         </Col>
     </Form>

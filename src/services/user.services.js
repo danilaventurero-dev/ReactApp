@@ -7,10 +7,23 @@ export const getService = () => {
     return new Promise((resolve, reject) => {
         axios.get(`${API_HOST}/${MODULE}`, {
             headers: {
-                
+                //authorization: `bearer ${jwt}`,
             }
         }).then(data => {
             resolve(data.data);
+        }).catch(err => reject(err.message));
+    })
+}
+
+export const saveService = (data) => {
+    return new Promise((resolve, reject) => {
+        axios.post(`${API_HOST}/${MODULE}`, data, {
+            headers: {
+                //authorization: `bearer ${jwt}`,
+            }
+        }).then(data => {
+            resolve(data.data);
+            console.log(data.data.message)
         }).catch(err => reject(err.message));
     })
 }

@@ -1,30 +1,50 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Container, Col } from 'reactstrap';
+import {useDispatch} from 'react-redux'
+import { Button, Form, FormGroup, Label, Input,  Container, Col } from 'reactstrap';
+import useInput from '../hooks/useInput'
+import {saveActionsAsyncCreator as createAction} from '../store/modules/user/create.action'
 
-import {  NavLink } from "react-router-dom";
+//import {  NavLink } from "react-router-dom";
 
 const Example = (props) => {
+const dispatch = useDispatch();
+    const nombre = useInput('','nombre')
+    const email = useInput('','email');
+    const password = useInput('','password');
+
+    const registerUser = () =>{
+        const user = {
+            name: nombre.value,
+            email: email.value,
+            password: password.value
+        }
+        dispatch(createAction(user)) ;
+    }
+
   return (
     <Container className="themed-container">
         <Form>
         <Col sm={{ size: '6', offset: 3 }}>
+        <h3 className="display-1" >Registro!</h3>
             <FormGroup>
-                <Label for="exampleEmail">Correo Electronico</Label>
-                <Input type="email" name="email" id="Em" placeholder="Email" />
+                <Label for="nombre">Nombre</Label>
+                <Input {...nombre} placeholder="Nombre" />
+            </FormGroup>
+        </Col>
+        <Col sm={{ size: '6', offset: 3 }}>
+            <FormGroup>
+                <Label for="Email">Correo Electronico</Label>
+                <Input {...email} placeholder="Email" />
             </FormGroup>
         </Col>
         <Col sm={{ size: '6', offset: 3 }}>
         <FormGroup>
-            <Label for="examplePassword">Contraseña</Label>
-            <Input type="password" name="password" id="Ps" placeholder="Contraseña" />
+            <Label for="Password">Contraseña</Label>
+            <Input {...password} placeholder="Contraseña" />
         </FormGroup>
         </Col>
         <Col sm={{ size: '6', offset: 3 }}>
-        <Button>Login</Button>
-        <FormText >
-            <label htmlFor="">¿Todavida no tienes cuenta?</label> 
-            <NavLink to="/UserList" activeClassName="mi-link-activo"> Registrate!</NavLink>
-        </FormText>
+        <Button onClick={(registerUser)} >Registro</Button>
         </Col>
     </Form>
     </Container>
