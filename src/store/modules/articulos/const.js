@@ -1,0 +1,3 @@
+export const ARTICULO_GET = 'ARTICULO_GET'; 
+export const ARTICULO_DELETE = 'ARTICULO_DELETE'; 
+

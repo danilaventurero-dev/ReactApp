@@ -28,7 +28,7 @@ const UserList = (props) => {
 };
 
 // simplemente se retorna la parte de los items al componente
-const mapStateToProps = state => state.items;
+const mapStateToProps = state => state.user.items;
 
 export default connect(
     mapStateToProps

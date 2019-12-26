@@ -6,8 +6,8 @@ import {saveActionsAsyncCreator as createAction} from '../store/modules/user/cre
 
 //import {  NavLink } from "react-router-dom";
 
-const Example = (props) => {
-const dispatch = useDispatch();
+const Registro = (props) => {
+    const dispatch = useDispatch();
     const nombre = useInput('','nombre')
     const email = useInput('','email');
     const password = useInput('','password');
@@ -51,4 +51,4 @@ const dispatch = useDispatch();
   );
 }
 
-export default Example;
+export default Registro;
