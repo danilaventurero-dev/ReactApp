@@ -1,30 +1,88 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter , Form, FormGroup, Label, Input,  Col} from 'reactstrap';
+import {useDispatch} from 'react-redux'
+import useInput from '../hooks/useInput'
+import {updateActionsAsyncCreator as updateAction} from '../store/modules/articulos/updateArticulos.action'
+import {findActionsAsyncCreator as findArticulos} from '../store/modules/articulos/finArticulos.action'
 
+import { getActionsAsyncCreator as getAll } from '../store/modules/articulos/getArticulos.action';
+import {useEffect} from 'react';
 const ModalPost = (props) => {
   const {
     buttonLabel,
     className,
+    isOpen,
     post
   } = props;
 
-  const [modal, setModal] = useState(post);
+  useEffect((band) => {
+    console.log(band);
+    dispatch(getAll())
+}, [isOpen])
 
-  const toggle = () => setModal(!modal);
+  const dispatch = useDispatch();
+  const title = useInput('','title')
+  const description = useInput('','description');
+  const image_url = useInput('','image_url');
 
-  const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={toggle}>&times;</button>;
+  const [modal, setModal] = useState(isOpen);
+
+  const toggle = () =>  setModal(false);
+  
+  const lanza = () => {
+    
+    const articulo = {
+        title: title.value,
+        description: description.value,
+        image_url: image_url.value,
+    }
+    console.log(articulo)
+
+    
+    
+    dispatch(updateAction(articulo,post.id));
+    dispatch(findArticulos())
+  } 
+
+  const cerrar = () => {
+    
+    dispatch(findArticulos())
+  } 
+
+  const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={cerrar}>&times;</button>;
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className} external={externalCloseBtn}>
-        <ModalHeader>Modal title</ModalHeader>
+     
+      <Modal isOpen={isOpen} toggle={toggle} className={className} external={externalCloseBtn}>
+        <ModalHeader>Editar Articulo!</ModalHeader>
         <ModalBody>
-          <b>Look at the top right of the page/viewport!</b><br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <Form>
+            <Col sm={{ size: '6', offset: 3 }}>
+            <h3 className="display-1" >Titulo!</h3>
+                <FormGroup>
+                    <Label for="title">Titulo</Label>
+                    <Input {...title} placeholder="Titulo" />
+                </FormGroup>
+            </Col>
+
+            <Col sm={{ size: '6', offset: 3 }}>
+                <FormGroup>
+                    <Label for="description">Descripcion</Label>
+                    <Input  {...description} placeholder="Description" type="textarea" />
+                </FormGroup>
+            </Col>
+
+            <Col sm={{ size: '6', offset: 3 }}>
+            <FormGroup>
+                <Label for="image_url">Url a imagen</Label>
+                <Input {...image_url} placeholder="Imagen" />
+            </FormGroup>
+            </Col>
+          </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+          <Button color="primary" onClick={lanza}>Guardar</Button>{' '}
+          <Button color="secondary" onClick={cerrar}>Cancel</Button>
         </ModalFooter>
       </Modal>
     </div>

@@ -16,7 +16,7 @@ const card = ({dispatch,items, jwt}) => {
         <CardImg top width="100%" src={items.image_url} alt="Card image cap" />
         <CardBody>
           <CardTitle>{items.title}</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
+          <CardSubtitle>{items.description}</CardSubtitle>
           <CardText>{items.id}</CardText>
           {jwt ? (
             <div>

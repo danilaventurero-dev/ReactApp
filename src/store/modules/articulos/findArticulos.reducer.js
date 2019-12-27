@@ -1,8 +1,9 @@
-import {ARTICULO_FIND} from './const';
+import {ARTICULO_FIND,ARTICULO_EMPTY} from './const';
 
 const initialState = {
     items:  [],
-    error: ''
+    error: '',
+    band:false
 };
 
 const findArticulosReducer = (prevState = initialState, action) =>    {
@@ -11,7 +12,14 @@ const findArticulosReducer = (prevState = initialState, action) =>    {
             return{
                 items: action.payload,
                 error: null,
+                band:true,
             };
+            case ARTICULO_EMPTY:
+                return{
+                    items: prevState.items,
+                    error: null,
+                    band:false,
+                };    
     
         default:
             return prevState;
