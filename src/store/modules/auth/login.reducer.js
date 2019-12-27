@@ -1,5 +1,6 @@
 import {
     AUTH_LOGIN,
+    AUTH_LOGOUT
 } from './const';
 
 const initialState = {
@@ -18,6 +19,13 @@ const loginReducer = (prevState = initialState, action) => {
                 error: false,
                 success: true,
             };
+            case AUTH_LOGOUT:
+                localStorage.removeItem('jwt');
+                return {
+                    data: null,
+                    error: false,
+                    success: true,
+                };
 
         default:
             return prevState;

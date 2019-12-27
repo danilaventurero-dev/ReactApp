@@ -1,3 +1,4 @@
 export const ARTICULO_GET = 'ARTICULO_GET'; 
 export const ARTICULO_DELETE = 'ARTICULO_DELETE'; 
+export const ARTICULO_FIND = 'ARTICULO_FIND'; 
 

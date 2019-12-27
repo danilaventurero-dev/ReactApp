@@ -1,17 +1,26 @@
 import React, {useEffect} from 'react';
 //import { useDispatch, useSelector } from 'react-redux';
-import {connect,useDispatch} from 'react-redux';
+import {connect,useDispatch, useSelector} from 'react-redux';
 import Card  from '../componentes/card';
-import { Container, Col, Row } from 'reactstrap';
+import { Container, Col, Row, H2 } from 'reactstrap';
 import { getActionsAsyncCreator as getAll } from '../store/modules/articulos/getArticulos.action';
+import ModalPost from '../componentes/modal'
 
 const Articulos = (props) => {
 
     const dispatch = useDispatch();
+    const value = useSelector(store => store.articulos.response.message);
+    const post = useSelector(store => store.articulos.post.items);
+    const jwt = useSelector(store => store.auth.logueo.data );
 
     useEffect(() => {
         dispatch(getAll())
-    }, [dispatch])
+    }, [value])
+
+    useEffect(() => {   
+        
+        
+    }, [post])
 
     const {
         items,
@@ -19,18 +28,24 @@ const Articulos = (props) => {
     
 
     return (
-        <Container >
+          <div>
+<Container>
+            
             <Row>
             {items.map(item => (
                 
                <Col key={item.id}  sm={{ size: '4', offset: 2 }}>
                
-                    <Card dispatch={dispatch} items={item} />
+                    <Card dispatch={dispatch} items={item} jwt={jwt}/>
                    
                 </Col>
              ))}
              </Row>
         </Container>
+
+        />
+          </div>
+        
     );
 };
 

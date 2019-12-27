@@ -1,5 +1,5 @@
-import React from 'react';
-import {useDispatch} from 'react-redux'
+import React, {useEffect} from 'react';
+import {useDispatch,useSelector} from 'react-redux'
 import { Button, Form, FormGroup, Label, Input,  Container, Col } from 'reactstrap';
 import useInput from '../hooks/useInput'
 import {saveActionsAsyncCreator as createAction} from '../store/modules/user/create.action'
@@ -7,6 +7,7 @@ import {saveActionsAsyncCreator as createAction} from '../store/modules/user/cre
 //import {  NavLink } from "react-router-dom";
 
 const Registro = (props) => {
+    const message = useSelector(store => store.user.create.success );
     const dispatch = useDispatch();
     const nombre = useInput('','nombre')
     const email = useInput('','email');
@@ -20,6 +21,15 @@ const Registro = (props) => {
         }
         dispatch(createAction(user)) ;
     }
+
+    useEffect(() => {
+        if (message ==='success' ) {
+            props.history.push('/UserList')
+            
+        }
+    }, [message])
+
+
 
   return (
     <Container className="themed-container">

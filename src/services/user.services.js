@@ -23,7 +23,6 @@ export const saveService = (data) => {
             }
         }).then(data => {
             resolve(data.data);
-            console.log(data.data.message)
         }).catch(err => reject(err.message));
     })
 }

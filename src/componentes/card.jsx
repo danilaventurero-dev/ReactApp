@@ -5,10 +5,11 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import { deleteActionsAsyncCreator as deleteAction } from '../store/modules/articulos/deleteArticulos.action'
+import { findActionsAsyncCreator as findAction } from '../store/modules/articulos/finArticulos.action'
 
 
 
-const card = ({dispatch,items}) => {
+const card = ({dispatch,items, jwt}) => {
   return (
     <div>
       <Card>
@@ -17,7 +18,14 @@ const card = ({dispatch,items}) => {
           <CardTitle>{items.title}</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
           <CardText>{items.id}</CardText>
-          <Button onClick={() => dispatch(deleteAction(items.id))} > Borrar</Button>
+          {jwt ? (
+            <div>
+            <Button color="primary" size="sm" onClick={() => dispatch(findAction(items.id))} > Editar</Button>
+            <Button color="danger" size="sm" onClick={() => dispatch(deleteAction(items.id))} > Borrar</Button>
+            </div>
+          ) : (""
+          )}
+
         </CardBody>
       </Card>
     </div>

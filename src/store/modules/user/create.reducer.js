@@ -1,9 +1,9 @@
-import {USER_CREATE} from './const';
+import {USER_CREATE, USER_CLEAR} from './const';
 
 const initialState = {
     data:  [],
     error: '',
-    success:'hola'
+    success:''
 };
 
 const createReducer = (prevState = initialState, action) =>    {
@@ -13,6 +13,12 @@ const createReducer = (prevState = initialState, action) =>    {
                 data: prevState.data,
                 error: null,
                 success: action.payload,
+            };
+        case USER_CLEAR:
+            return{
+                data: prevState.data,
+                error: null,
+                success: '',
             };
     
         default:

@@ -18,7 +18,7 @@ const Table = ({ items }) => {
                         <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td>{item.email}</td>
-                        <td>{item.id ? 'completada' : 'por completar'}</td>
+                        <td>{item.id ? 'Activo' : 'bloqueado'}</td>
                     </tr>
                 ))}
             </tbody>

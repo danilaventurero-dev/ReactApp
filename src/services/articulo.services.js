@@ -27,3 +27,15 @@ export const deleteService = ( id ) => {
             }).catch(err => reject(err.message));
     })
 }
+
+export const findService = ( id ) => {
+    return new Promise((resolve, reject) => {
+        axios.get(`${API_HOST}/${MODULE}/${id}`, {
+            headers: {
+                //authorization: `bearer ${jwt}`,
+            }
+        }).then(data => {
+            resolve(data.data);
+        }).catch(err => reject(err.message));
+    })
+}

@@ -1,6 +1,8 @@
-import {AUTH_LOGIN} from './const';
+import {AUTH_LOGIN,AUTH_LOGOUT} from './const';
 import {loginService} from '../../../services/login.services';
 
+
+export const logoutAction = () => ({ type: AUTH_LOGOUT, payload: null });
 
 const successActionCreator = (data) =>({
     type: AUTH_LOGIN,

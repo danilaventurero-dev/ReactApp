@@ -15,7 +15,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (jwt !== null) {
-            props.history.push('/UserList')
+            props.history.push('/')
         }
     }, [jwt])
 

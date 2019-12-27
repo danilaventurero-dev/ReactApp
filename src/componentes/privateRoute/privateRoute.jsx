@@ -1,13 +1,13 @@
 import React from 'react';
-//import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-    const jwt = true //!!useSelector(store => store.auth.login.data);
+    const jwt = !!useSelector(store => store.auth.logueo.data);
     return (
         <Route {...rest} render={props => (
-            jwt ? <Component {...props} /> : <Redirect to="/" />
+            jwt ? <Component {...props} /> : <Redirect to="/login" />
         )} />
     );
 };
