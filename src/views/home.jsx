@@ -14,15 +14,15 @@ const Articulos = (props) => {
     const band = useSelector(store => store.articulos.post.band);
     const jwt = useSelector(store => store.auth.logueo.data );
 
-    useEffect(() => {
-        dispatch(getAll())
-    }, [message])
+   
 
     useEffect(() => {
         dispatch(getAll())
     }, [band])
 
-    
+    useEffect(() => {
+        dispatch(getAll())
+    }, [message])
 
 
     const {

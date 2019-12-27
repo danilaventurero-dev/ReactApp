@@ -9,7 +9,6 @@ import { getActionsAsyncCreator as getAll } from '../store/modules/articulos/get
 import {useEffect} from 'react';
 const ModalPost = (props) => {
   const {
-    buttonLabel,
     className,
     isOpen,
     post
@@ -21,9 +20,9 @@ const ModalPost = (props) => {
 }, [isOpen])
 
   const dispatch = useDispatch();
-  const title = useInput('','title')
-  const description = useInput('','description');
-  const image_url = useInput('','image_url');
+  const title = useInput(post ? post.title : '','title')
+  const description = useInput(post ? post.description: '','description');
+  const image_url = useInput( post ? post.image_url : '','image_url');
 
   const [modal, setModal] = useState(isOpen);
 
@@ -36,12 +35,12 @@ const ModalPost = (props) => {
         description: description.value,
         image_url: image_url.value,
     }
-    console.log(articulo)
 
-    
-    
     dispatch(updateAction(articulo,post.id));
-    dispatch(findArticulos())
+    debugger
+    dispatch(findArticulos());
+    dispatch(getAll());
+
   } 
 
   const cerrar = () => {
@@ -61,7 +60,7 @@ const ModalPost = (props) => {
             <h3 className="display-1" >Titulo!</h3>
                 <FormGroup>
                     <Label for="title">Titulo</Label>
-                    <Input {...title} placeholder="Titulo" />
+                    <Input {...title} placeholder="Titulo"  />
                 </FormGroup>
             </Col>
 
