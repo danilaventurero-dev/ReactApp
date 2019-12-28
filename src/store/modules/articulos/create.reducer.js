@@ -1,25 +1,47 @@
-import {ARTICULO_CREATE, ARTICULO_CLEAR} from './const';
+import {
+    ARTICULO_SOLICITUD 
+    , ARTICULO_CREATE
+    , ARTICULO_RESPONSE
+    , ARTICULO_VOID
+} from './const';
 
 const initialState = {
     data:  [],
     error: '',
-    success:''
+    success:false,
+    solicitud:false,
 };
 
 const createReducer = (prevState = initialState, action) =>    {
     switch (action.type) {
-        case ARTICULO_CREATE:
+        case ARTICULO_SOLICITUD:
             return{
                 data: prevState.data,
                 error: null,
-                success: action.payload,
+                success: false,
+                solicitud:true,
             };
-            case ARTICULO_CLEAR:
+        case ARTICULO_CREATE:
+            return{
+                data: prevState.data,
+                error: '',
+                success: true,
+                solicitud:true
+            };
+            case ARTICULO_RESPONSE:
                 return{
                     data: prevState.data,
                     error: null,
-                    success: '',
+                    solicitud: false,
+                    success: true,
                 };
+                case ARTICULO_VOID:
+                    return{
+                        data: prevState.data,
+                        error: null,
+                        solicitud: false,
+                        success: false,
+                    };    
         default:
             return prevState;
     }

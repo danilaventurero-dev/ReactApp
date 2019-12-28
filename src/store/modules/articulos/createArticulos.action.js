@@ -1,26 +1,52 @@
-import {ARTICULO_CREATE,ARTICULO_CLEAR} from './const';
+import {
+     ARTICULO_SOLICITUD
+    ,ARTICULO_CREATE
+    ,ARTICULO_ERROR
+    ,ARTICULO_RESPONSE
+    ,ARTICULO_VOID
+} from './const';
 import { saveService } from '../../../services/articulo.services';
 
-const articuloCreateActionCreator = (data) => ({
-    type: ARTICULO_CREATE,
+const solicitudCreateActionCreator = (data) => ({
+    type: ARTICULO_SOLICITUD,
     payload: data
 })
 
-const clearActionCreator = () => ({
-    type: ARTICULO_CLEAR,
+const ejecucionCreateActionCreator = () => ({
+    type: ARTICULO_CREATE,
     payload: null
+})
+
+const responseCreateActionCreator = () => ({
+    type: ARTICULO_RESPONSE,
+    payload: null
+})
+
+const voidCreateActionCreator = () => ({
+    type: ARTICULO_VOID,
+    payload: false
+})
+
+const errorCreateActionCreator = (err) => ({
+    type: ARTICULO_ERROR,
+    payload: err
 })
 
 export const createActionsAsyncCreator = (data) => {
     return (dispatch) => {
+        dispatch(solicitudCreateActionCreator(data))
         
         saveService(data).then(data => {
-            dispatch(articuloCreateActionCreator(data.message));
+
+            dispatch(ejecucionCreateActionCreator(data.message));
+            
             if (data.message === 'success') {
-                dispatch(clearActionCreator());
+                dispatch(responseCreateActionCreator());
+                dispatch(voidCreateActionCreator());
+                
             }
         }).catch(err => {
-            //dispatch(errorActionCreator(err));
+            dispatch(errorCreateActionCreator(err));
         })
     }
 }

@@ -21,7 +21,7 @@ const Menu = () => {
                 {jwt ? (
                 <div>
                     <NavItem>
-                        <Link className='nav-link' to='/createArticulo' >Crear Articulo</Link>
+                        <Link className='nav-link' to='/articulo' >Crear Articulo</Link>
                     </NavItem>
                     <NavItem>
                     <Link className='nav-link' to='/userList' >Lista de usuario</Link>
