@@ -41,7 +41,7 @@ const createReducer = (prevState = initialState, action) =>    {
                 error: null,
                 solicitud: false,
                 success: false,
-            };    
+            };    1
         default:
             return prevState;
     }
