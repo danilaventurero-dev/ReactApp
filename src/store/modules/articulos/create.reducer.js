@@ -28,20 +28,20 @@ const createReducer = (prevState = initialState, action) =>    {
                 success: true,
                 solicitud:true
             };
-            case ARTICULO_RESPONSE:
-                return{
-                    data: prevState.data,
-                    error: null,
-                    solicitud: false,
-                    success: true,
-                };
-                case ARTICULO_VOID:
-                    return{
-                        data: prevState.data,
-                        error: null,
-                        solicitud: false,
-                        success: false,
-                    };    
+        case ARTICULO_RESPONSE:
+            return{
+                data: prevState.data,
+                error: null,
+                solicitud: false,
+                success: true,
+            };
+        case ARTICULO_VOID:
+            return{
+                data: prevState.data,
+                error: null,
+                solicitud: false,
+                success: false,
+            };    
         default:
             return prevState;
     }

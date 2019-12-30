@@ -35,7 +35,7 @@ const errorCreateActionCreator = (err) => ({
 export const createActionsAsyncCreator = (data) => {
     return (dispatch) => {
         dispatch(solicitudCreateActionCreator(data))
-        
+        debugger
         saveService(data).then(data => {
 
             dispatch(ejecucionCreateActionCreator(data.message));
@@ -46,6 +46,7 @@ export const createActionsAsyncCreator = (data) => {
                 
             }
         }).catch(err => {
+            debugger
             dispatch(errorCreateActionCreator(err));
         })
     }

@@ -5,6 +5,7 @@ import {createActionsAsyncCreator as createAction} from '../store/modules/articu
 import useInput from '../hooks/useInput'
 import {Button, Form, FormGroup, Label, Input,  Container, Col  } from 'reactstrap';
 import swal from 'sweetalert';
+
 const ArticuloCreate = (props) => {
     const dispatch = useDispatch();
     const title = useInput('','title')
@@ -24,7 +25,7 @@ const ArticuloCreate = (props) => {
     }
 
     useEffect(() => {
-        if (message!=false) {
+        if (message!==false) {
             props.history.push('/')  
             swal({
                 title: "Articulo Creado"  ,
@@ -32,11 +33,6 @@ const ArticuloCreate = (props) => {
               });
         }
     }, [message,props])
-
-    const {
-        
-    } = props;
-    
 
     return (
         <Container className="themed-container">
@@ -51,7 +47,7 @@ const ArticuloCreate = (props) => {
         <Col sm={{ size: '6', offset: 3 }}>
             <FormGroup>
                 <Label for="description">Descripcion</Label>
-                <Input {...description} placeholder="Description" />
+                <Input {...description} placeholder="Description" type="textarea" />
             </FormGroup>
         </Col>
         <Col sm={{ size: '6', offset: 3 }}>
