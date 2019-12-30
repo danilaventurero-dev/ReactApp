@@ -17,7 +17,7 @@ const card = ({dispatch,items, jwt}) => {
         <CardBody>
           <CardTitle>{items.title}</CardTitle>
           <CardSubtitle>{items.description}</CardSubtitle>
-          <CardText>{items.id}</CardText>
+          <CardText></CardText>
           {jwt ? (
             <div>
             <Button color="primary" size="sm" onClick={() => dispatch(findAction(items.id))} > Editar</Button>

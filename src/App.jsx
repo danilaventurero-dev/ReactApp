@@ -12,18 +12,27 @@ import userList from './views/userList' ;
 import articulo from './views/articulo';
 import Menu from './componentes/nav';
 //import Login from './views/login' ;
+import{Container, Row, Col } from 'reactstrap';
   
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Menu  />
-        <Route path="/" exact component={Home} />
-        <Route path="/login" exact component={login} />
-        <Route path="/registro" exact component={registro} />
-        <PrivateRoute path="/userList" exact component={userList} />
-        <PrivateRoute path="/articulo" exact component={articulo} />
+      <Container className="themed-container" fluid={true}> 
+        <Row>
+          <Col sm="2" >
+            <Menu />
+          </Col>  
+          <Col sm="10">
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={login} />
+            <Route path="/registro" exact component={registro} />
+            <PrivateRoute path="/userList" exact component={userList} />
+            <PrivateRoute path="/articulo" exact component={articulo} />
+          </Col>
+        </Row>
+      </Container>
       </Router>
     </Provider>
   );

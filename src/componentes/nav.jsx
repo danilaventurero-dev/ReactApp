@@ -1,5 +1,5 @@
 import React  from 'react';
-import{ Nav, NavItem} from 'reactstrap';
+import{Nav} from 'reactstrap';
 import {  NavLink as Link} from "react-router-dom";
 import {useDispatch,useSelector} from 'react-redux';
 import { logoutAction } from '../store/modules/auth/login.action';
@@ -11,35 +11,37 @@ const Menu = () => {
         dispatch(logoutAction());
       }
     return (
-        <Nav vertical>
-                <NavItem>
-                    <Link className='nav-link' to='/' >Inicio</Link>
-                </NavItem>
-                <NavItem>
-                    <Link className='nav-link' to='/registro' >Crear Usuario</Link>
-                </NavItem>
+        <div>
+        <h4 >NAVEGACION</h4>
+        <Nav className="flex-column nav">
+            <li className="nav-item">
+            <Link className='' to='/' >Inicio</Link>
+            </li>
+            <li className="nav-item">
+            <Link className='' to='/registro' >Crear Usuario</Link>
+            
+            </li>
                 {jwt ? (
                 <div>
-                    <NavItem>
-                        <Link className='nav-link' to='/articulo' >Crear Articulo</Link>
-                    </NavItem>
-                    <NavItem>
-                    <Link className='nav-link' to='/userList' >Lista de usuario</Link>
-                </NavItem>
-                    <NavItem>
-                        <Link className='nav-link' to='#' onClick={handlerLogout} >Cerrar sesion</Link>
-                    </NavItem>
+                    <li className="nav-item">
+                    <Link className='' to='/articulo' >Crear Articulo</Link>
+                    </li>
+                    <li className="nav-item">
+                    <Link className='' to='/userList' >Lista de usuario</Link>
+                    </li>
+                    <li className="nav-item">
+                    <Link className='' to='#' onClick={handlerLogout} >Cerrar sesion</Link>
+                    </li>
                 </div>
                 ) : (
-                    <NavItem>
-                        <Link className='nav-link' to='/login' >Inicia Sesion</Link>
-                    </NavItem>
+                    <li className="nav-item">
+                        
+                    <Link className='' to='/login' >Inicia Sesion</Link>
+                    </li>
                 )}
-
-                
-
-                
-            </Nav>
+        </Nav>
+        </div>
+        
     );
 }
 

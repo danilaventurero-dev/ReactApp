@@ -1,18 +1,29 @@
-import { ARTICULO_GET  } from './const';
+import { ARTICULO_SOLICITUD, ARTICULO_GET, ARTICULO_RESPONSE  } from './const';
 
 import { getService } from '../../../services/articulo.services';
+const solicitudActionCreator = () => ({
+    type: ARTICULO_SOLICITUD,
+    payload:true,
+});
 
 const getActionCreator = (data) =>  ({
     type: ARTICULO_GET,
-    payload: data
+    payload: data,
 });
 
+const responseActionCreator = () => ({
+    type:ARTICULO_RESPONSE,
+    payload:false
+})
+
 export const getActionsAsyncCreator = () => {
-    return (dispatch, getStore) => {
+    return (dispatch) => {
+        dispatch(solicitudActionCreator);
 
         getService().then(data => {
-            dispatch(getActionCreator(data.data));
-        
+            debugger
+            dispatch(getActionCreator(data.data));  
+            dispatch(responseActionCreator);
         }).catch(err => {
             console.log(err);
         })

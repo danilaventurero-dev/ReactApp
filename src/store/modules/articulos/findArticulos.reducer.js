@@ -1,26 +1,35 @@
-import {ARTICULO_FIND,ARTICULO_EMPTY} from './const';
+import {ARTICULO_FIND, ARTICULO_SOLICITUD, ARTICULO_RESPONSE} from './const';
 
 const initialState = {
-    items:  [],
+    item:  [],
     error: '',
-    band:false
+    solicitud:false,
+    success:false
 };
 
 const findArticulosReducer = (prevState = initialState, action) =>    {
     switch (action.type) {
-        case ARTICULO_FIND:
+        case ARTICULO_SOLICITUD:
             return{
-                items: action.payload,
+                items: prevState.items,
                 error: null,
-                band:true,
+                solicitud:true,
+                success:false
             };
-            case ARTICULO_EMPTY:
+            case ARTICULO_FIND:
+                return{
+                    items: action.payload,
+                    error: null,
+                    solicitud:true,
+                    success:false,
+                };    
+            case ARTICULO_RESPONSE:
                 return{
                     items: prevState.items,
                     error: null,
-                    band:false,
+                    solicitud:false,
+                    success:true,
                 };    
-    
         default:
             return prevState;
     }

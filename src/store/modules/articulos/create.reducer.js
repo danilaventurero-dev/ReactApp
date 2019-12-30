@@ -3,6 +3,7 @@ import {
     , ARTICULO_CREATE
     , ARTICULO_RESPONSE
     , ARTICULO_VOID
+    ,ARTICULO_ERROR
 } from './const';
 
 const initialState = {
@@ -25,7 +26,7 @@ const createReducer = (prevState = initialState, action) =>    {
             return{
                 data: prevState.data,
                 error: '',
-                success: true,
+                success: false,
                 solicitud:true
             };
         case ARTICULO_RESPONSE:
@@ -41,7 +42,14 @@ const createReducer = (prevState = initialState, action) =>    {
                 error: null,
                 solicitud: false,
                 success: false,
-            };    1
+            };
+            case ARTICULO_ERROR:
+                return{
+                    data: prevState.data,
+                    error: null,
+                    solicitud: false,
+                    success: false,
+                };
         default:
             return prevState;
     }

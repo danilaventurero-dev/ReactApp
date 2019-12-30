@@ -32,7 +32,7 @@ const Registro = (props) => {
 
 
   return (
-    <Container className="themed-container">
+    <Container >
         <Form>
         <Col sm={{ size: '6', offset: 3 }}>
         <h3 className="display-1" >Registro!</h3>

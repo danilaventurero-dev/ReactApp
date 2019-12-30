@@ -46,7 +46,7 @@ export const findService = ( id ) => {
             headers: {
                 //authorization: `bearer ${jwt}`,
             }
-        }).then(data => {
+        }).then(data => {debugger
             resolve(data.data);
         }).catch(err => reject(err.message));
     })

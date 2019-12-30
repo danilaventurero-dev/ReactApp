@@ -3,13 +3,12 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter , Form, FormGroup, L
 import {useDispatch} from 'react-redux'
 import useInput from '../hooks/useInput'
 import {updateActionsAsyncCreator as updateAction} from '../store/modules/articulos/updateArticulos.action'
-import {findActionsAsyncCreator as findArticulos} from '../store/modules/articulos/finArticulos.action'
-
+import {findActionsAsyncCreator as findArticulos} from '../store/modules/articulos/finArticulos.action';
 import { getActionsAsyncCreator as getAll } from '../store/modules/articulos/getArticulos.action';
 import {useEffect} from 'react';
+
 const ModalPost = (props) => {
   const {
-    className,
     isOpen,
     post
   } = props;
@@ -37,7 +36,7 @@ const ModalPost = (props) => {
     }
 
     dispatch(updateAction(articulo,post.id));
-    debugger
+    
     dispatch(findArticulos());
     dispatch(getAll());
 
@@ -52,7 +51,7 @@ const ModalPost = (props) => {
   return (
     <div>
      
-      <Modal isOpen={isOpen} toggle={toggle} className={className} external={externalCloseBtn}>
+      <Modal isOpen={isOpen} toggle={toggle}  external={externalCloseBtn}>
         <ModalHeader>Editar Articulo!</ModalHeader>
         <ModalBody>
           <Form>

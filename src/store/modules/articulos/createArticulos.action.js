@@ -7,9 +7,9 @@ import {
 } from './const';
 import { saveService } from '../../../services/articulo.services';
 
-const solicitudCreateActionCreator = (data) => ({
+const solicitudCreateActionCreator = () => ({
     type: ARTICULO_SOLICITUD,
-    payload: data
+    payload: true
 })
 
 const ejecucionCreateActionCreator = () => ({
@@ -35,18 +35,20 @@ const errorCreateActionCreator = (err) => ({
 export const createActionsAsyncCreator = (data) => {
     return (dispatch) => {
         dispatch(solicitudCreateActionCreator(data))
-        debugger
+        
         saveService(data).then(data => {
 
             dispatch(ejecucionCreateActionCreator(data.message));
-            
+            debugger
             if (data.message === 'success') {
                 dispatch(responseCreateActionCreator());
                 dispatch(voidCreateActionCreator());
                 
+            }else{
+                dispatch(errorCreateActionCreator(data.message))
             }
         }).catch(err => {
-            debugger
+            
             dispatch(errorCreateActionCreator(err));
         })
     }

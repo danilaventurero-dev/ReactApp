@@ -1,30 +1,32 @@
-import { ARTICULO_FIND, ARTICULO_EMPTY  } from './const';
+import { ARTICULO_SOLICITUD, ARTICULO_FIND, ARTICULO_RESPONSE  } from './const';
 
 import { findService } from '../../../services/articulo.services';
 
-const findActionCreator = (data) =>  ({
+const solicitudPostFindActionCreator = () =>  ({
+    type: ARTICULO_SOLICITUD,
+    payload: true
+});
+
+const findPostActionCreator = (data) =>  ({
     type: ARTICULO_FIND,
     payload: data
 });
 
-const emptyPostActionCreator = () =>  ({
-    type: ARTICULO_EMPTY,
-    payload: ''
+const responsePostActionCreator = () =>  ({
+    type: ARTICULO_RESPONSE,
+    payload: true
 });
 
 export const findActionsAsyncCreator = (id) => {
-    return (dispatch, getStore) => {
-        if(id){    
+    return (dispatch) => {
+        dispatch(solicitudPostFindActionCreator());
+        debugger
             findService(id).then(data => {
-                dispatch(findActionCreator(data.data));
+                debugger
+                dispatch(findPostActionCreator(data.data));
             }).catch(err => {
                 console.log(err);
             })
-        }else{
-            dispatch(emptyPostActionCreator())
-        }
-        
-        
-        
+        dispatch(responsePostActionCreator()); 
     }
 }
