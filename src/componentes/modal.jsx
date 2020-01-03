@@ -13,10 +13,7 @@ const ModalPost = (props) => {
     post
   } = props;
 
-  useEffect((band) => {
-    console.log(band);
-    dispatch(getAll())
-}, [isOpen])
+  
 
   const dispatch = useDispatch();
   const title = useInput(post ? post.title : '','title')

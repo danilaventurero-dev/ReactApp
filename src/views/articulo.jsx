@@ -11,7 +11,6 @@ const ArticuloCreate = (props) => {
     const title = useInput('','title')
     const description = useInput('','description');
     const image_url = useInput('','image_url');
-    
     const message = useSelector(store => store.articulos.create.success );
  
     const guardarArticulo = () =>{
@@ -25,14 +24,16 @@ const ArticuloCreate = (props) => {
     }
 
     useEffect(() => {
-        if (message!==false) {
-            props.history.push('/')  
-            swal({
-                title: "Articulo Creado"  ,
+       if (message) {
+        props.history.push('/')  
+        swal("Articulo Creado con exito",{
+                title: "Perfecto"  ,
                 icon: "success",
-              });
-        }
-    }, [message,props])
+                buttons: [""],
+                timer:1500
+              });     
+       }
+    }, [message])
 
     return (
         <Container className="themed-container">

@@ -18,12 +18,13 @@ const responseActionCreator = () => ({
 
 export const getActionsAsyncCreator = () => {
     return (dispatch) => {
-        dispatch(solicitudActionCreator);
+        dispatch(solicitudActionCreator());
 
         getService().then(data => {
-            debugger
+            
             dispatch(getActionCreator(data.data));  
-            dispatch(responseActionCreator);
+
+            dispatch(responseActionCreator());
         }).catch(err => {
             console.log(err);
         })

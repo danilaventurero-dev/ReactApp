@@ -1,18 +1,34 @@
-import { ARTICULO_DELETE } from "./const"
+import { ARTICULO_DELETE_EJECUCION,ARTICULO_DELETE_SOLICITUD,ARTICULO_DELETE_RESPONSE,ARTICULO_DELETE_VOID } from "./const"
 
 import { deleteService, getService as getAll } from '../../../services/articulo.services';
 
-const deleteActionCreator = (data) =>  ({
-    type: ARTICULO_DELETE,
+const deleteSolicitudActionCreator = () =>  ({
+    type: ARTICULO_DELETE_SOLICITUD,
+    payload: true
+});
+
+const deleteEjecucionActionCreator = (data) =>  ({
+    type: ARTICULO_DELETE_EJECUCION,
     payload: data
 });
 
-export const deleteActionsAsyncCreator = (id) => {
-    return (dispatch, getStore) => {
+const deleteResponseActionCreator = (data) =>  ({
+    type: ARTICULO_DELETE_RESPONSE,
+    payload: data
+});
 
+const deleteVoidActionCreator = (data) =>  ({
+    type: ARTICULO_DELETE_VOID,
+    payload: false
+});
+
+export const deleteActionsAsyncCreator = (id) => {
+    return (dispatch) => {
+        dispatch(deleteSolicitudActionCreator())
         deleteService( id).then(data => {
-            dispatch(deleteActionCreator(data.data));
-            dispatch(getAll());
+            dispatch(deleteEjecucionActionCreator(data.data));
+            dispatch(deleteResponseActionCreator());
+            dispatch(deleteVoidActionCreator());
         }).catch(err => {
             //dispatch((err));
         })

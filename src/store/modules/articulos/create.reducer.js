@@ -1,10 +1,10 @@
 import {
-    ARTICULO_SOLICITUD 
-    , ARTICULO_CREATE
-    , ARTICULO_RESPONSE
+    ARTICULO_CREATE_SOLICITUD 
+    , ARTICULO_CREATE_EJECUCION
+    , ARTICULO_CREATE_RESPONSE
     , ARTICULO_VOID
     ,ARTICULO_ERROR
-} from './const';
+} from './const'; 
 
 const initialState = {
     data:  [],
@@ -15,21 +15,21 @@ const initialState = {
 
 const createReducer = (prevState = initialState, action) =>    {
     switch (action.type) {
-        case ARTICULO_SOLICITUD:
+        case ARTICULO_CREATE_SOLICITUD:
             return{
                 data: prevState.data,
-                error: null,
+                error: prevState.error,
                 success: false,
                 solicitud:true,
             };
-        case ARTICULO_CREATE:
+        case ARTICULO_CREATE_EJECUCION:
             return{
                 data: prevState.data,
                 error: '',
                 success: false,
                 solicitud:true
             };
-        case ARTICULO_RESPONSE:
+        case ARTICULO_CREATE_RESPONSE:
             return{
                 data: prevState.data,
                 error: null,
@@ -40,15 +40,15 @@ const createReducer = (prevState = initialState, action) =>    {
             return{
                 data: prevState.data,
                 error: null,
-                solicitud: false,
                 success: false,
+                solicitud: false,
             };
             case ARTICULO_ERROR:
                 return{
                     data: prevState.data,
-                    error: null,
-                    solicitud: false,
+                    error: action.payload,
                     success: false,
+                    solicitud: false,
                 };
         default:
             return prevState;

@@ -6,22 +6,24 @@ import { Container, Col, Row } from 'reactstrap';
 import { getActionsAsyncCreator as getAll } from '../store/modules/articulos/getArticulos.action';
 import ModalPost from '../componentes/modal'
 
-const Articulos = (props) => {
+const Articulos = () => {
 
     const dispatch = useDispatch();
-
-    const solicitud = false; //useSelector(store => store.articulos.post.solicitud);
-    
     const items = useSelector(store => store.articulos.items.items);
-    const success = useSelector(store => store.articulos.items.success);
+    const createSuccess = useSelector(store => store.articulos.create.success);
+    const deleteSuccess = useSelector(store => store.articulos.response.success);
+
     const post = useSelector(store => store.articulos.post.item);
     const jwt = useSelector(store => store.auth.logueo.data );
 
     useEffect(() => {
-        debugger
-        dispatch(getAll())
-    }, [items])
-    
+            dispatch(getAll())      
+    }, [])
+
+    useEffect(() => {
+        dispatch(getAll())      
+}, [createSuccess,deleteSuccess])
+
     return (
         <Container>
         <Row>

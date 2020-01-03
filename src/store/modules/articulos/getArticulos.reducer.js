@@ -11,8 +11,8 @@ const getArticulosReducer = (prevState = initialState, action) =>    {
     switch (action.type) {
         case ARTICULO_SOLICITUD:
             return{
-                items: action.payload,
-                error: null,
+                items: prevState.items,
+                error: '',
                 solicitud:true,
                 success:false,
             };
@@ -25,7 +25,7 @@ const getArticulosReducer = (prevState = initialState, action) =>    {
             };
         case ARTICULO_RESPONSE:
             return{
-                items: action.payload,
+                items: prevState.items,
                 error: null,
                 solicitud:false,
                 success:true,

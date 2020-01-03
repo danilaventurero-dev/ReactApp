@@ -1,25 +1,25 @@
 import {
-     ARTICULO_SOLICITUD
-    ,ARTICULO_CREATE
+     ARTICULO_CREATE_SOLICITUD
+    ,ARTICULO_CREATE_EJECUCION
     ,ARTICULO_ERROR
-    ,ARTICULO_RESPONSE
+    ,ARTICULO_CREATE_RESPONSE
     ,ARTICULO_VOID
 } from './const';
 import { saveService } from '../../../services/articulo.services';
 
 const solicitudCreateActionCreator = () => ({
-    type: ARTICULO_SOLICITUD,
+    type: ARTICULO_CREATE_SOLICITUD,
     payload: true
 })
 
 const ejecucionCreateActionCreator = () => ({
-    type: ARTICULO_CREATE,
+    type: ARTICULO_CREATE_EJECUCION,
     payload: null
 })
 
 const responseCreateActionCreator = () => ({
-    type: ARTICULO_RESPONSE,
-    payload: null
+    type: ARTICULO_CREATE_RESPONSE,
+    payload: true
 })
 
 const voidCreateActionCreator = () => ({
@@ -34,14 +34,16 @@ const errorCreateActionCreator = (err) => ({
 
 export const createActionsAsyncCreator = (data) => {
     return (dispatch) => {
-        dispatch(solicitudCreateActionCreator(data))
+        
+        dispatch(solicitudCreateActionCreator())
         
         saveService(data).then(data => {
-
-            dispatch(ejecucionCreateActionCreator(data.message));
-            debugger
+            
+            dispatch(ejecucionCreateActionCreator());
+            
             if (data.message === 'success') {
-                dispatch(responseCreateActionCreator());
+                
+                dispatch(responseCreateActionCreator(data.message));
                 dispatch(voidCreateActionCreator());
                 
             }else{

@@ -28,7 +28,6 @@ export const saveService = ( data) => {
 }
 
 export const deleteService = ( id ) => {
-    console.log(id)
     return new Promise((resolve, reject) => {
         const url = `${API_HOST}/${MODULE}/${id}`;
         axios.delete(url, { 
