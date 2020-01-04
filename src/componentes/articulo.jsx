@@ -24,10 +24,10 @@ const Articulo = (props) => {
   return (
     <div>
       <Jumbotron>
+          <img src={post.image_url} alt=""/>
         <h1 className="display-3">{post.title}</h1>
         <p className="lead">{post.description}</p>
         <hr className="my-2" />
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         <p className="lead">
         </p>
       </Jumbotron>

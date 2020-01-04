@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import './App.css';
 import {Provider} from 'react-redux';
@@ -9,12 +9,12 @@ import Home from './views/home' ;
 import login from './views/login' ;
 import registro from './views/Registro' ;
 import userList from './views/userList' ;
+import articuloList from './views/articuloList' ;
 import articulo from './views/articulo';
 import detalleArticulo from './views/detalleArticulo';
 import Menu from './componentes/nav';
 //import Login from './views/login' ;
 import{Container, Row, Col } from 'reactstrap';
-  
 
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
             <Route path="/login" exact component={login} />
             <Route path="/registro" exact component={registro} />
             <Route path="/articulo/:id" exact component={detalleArticulo} />
+            <PrivateRoute path="/articuloList" exact component={articuloList} />
             <PrivateRoute path="/userList" exact component={userList} />
             <PrivateRoute path="/articulo" exact component={articulo} />
           </Col>

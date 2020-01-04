@@ -9,7 +9,6 @@ const getActionCreator = (data) =>  ({
 
 export const getActionsAsyncCreator = (jwt) => {
     return (dispatch, getStore) => {
-
         getService(jwt).then(data => {
             dispatch(getActionCreator(data.data));
         

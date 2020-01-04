@@ -27,6 +27,9 @@ const Menu = () => {
                     <Link className='' to='/articulo' >Crear Articulo</Link>
                     </li>
                     <li className="nav-item">
+                    <Link className='' to='/articuloList' >Lista de articulos</Link>
+                    </li>
+                    <li className="nav-item">
                     <Link className='' to='/userList' >Lista de usuario</Link>
                     </li>
                     <li className="nav-item">

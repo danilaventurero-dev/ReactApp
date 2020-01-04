@@ -19,9 +19,9 @@ const updateSuccessActionCreator = () =>  ({
     payload: true
 });
 
-const updateErrorActionCreator = (data) =>  ({
+const updateErrorActionCreator = () =>  ({
     type: ARTICULO_UPDATE_ERROR,
-    payload: data
+    payload: 'error'
 });
 
 
@@ -35,9 +35,10 @@ export const updateActionsAsyncCreator = (jwt,data,id) => {
             dispatch(updateSuccessActionCreator());
             dispatch(findArticulos());
         }).catch(err => {
+            debugger
+            dispatch(updateErrorActionCreator());
             
-            dispatch(updateErrorActionCreator(err));
-            
+            dispatch(findArticulos());
         })
     }
 }
