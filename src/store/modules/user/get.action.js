@@ -7,10 +7,10 @@ const getActionCreator = (data) =>  ({
     payload: data
 });
 
-export const getActionsAsyncCreator = () => {
+export const getActionsAsyncCreator = (jwt) => {
     return (dispatch, getStore) => {
 
-        getService().then(data => {
+        getService(jwt).then(data => {
             dispatch(getActionCreator(data.data));
         
         }).catch(err => {

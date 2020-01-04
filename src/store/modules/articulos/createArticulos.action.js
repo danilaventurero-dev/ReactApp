@@ -32,12 +32,10 @@ const errorCreateActionCreator = (err) => ({
     payload: err
 })
 
-export const createActionsAsyncCreator = (data) => {
+export const createActionsAsyncCreator = (jwt, data) => {
     return (dispatch) => {
-        
         dispatch(solicitudCreateActionCreator())
-        
-        saveService(data).then(data => {
+        saveService(jwt,data).then(data => {
             
             dispatch(ejecucionCreateActionCreator());
             

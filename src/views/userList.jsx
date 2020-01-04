@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-//import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {connect,useDispatch} from 'react-redux';
 import Table from '../componentes/Table';
 import { Container } from 'reactstrap';
@@ -8,9 +8,9 @@ import { getActionsAsyncCreator as getAll } from '../store/modules/user/get.acti
 const UserList = (props) => {
 
     const dispatch = useDispatch();
-
+    const jwt = useSelector(store => store.auth.logueo.data );
     useEffect(() => {
-        console.log(dispatch(getAll()))
+        console.log(dispatch(getAll(jwt)))
     }, [dispatch])
 
     const {

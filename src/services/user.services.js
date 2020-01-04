@@ -3,11 +3,11 @@ import {  API_HOST  } from './config';
 
 const MODULE = 'user';
 
-export const getService = () => {
+export const getService = (jwt) => {
     return new Promise((resolve, reject) => {
         axios.get(`${API_HOST}/${MODULE}`, {
             headers: {
-                //authorization: `bearer ${jwt}`,
+                authorization: `bearer ${jwt}`,
             }
         }).then(data => {
             resolve(data.data);

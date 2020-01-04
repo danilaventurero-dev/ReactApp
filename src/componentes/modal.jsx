@@ -10,7 +10,8 @@ import {useEffect} from 'react';
 const ModalPost = (props) => {
   const {
     isOpen,
-    post
+    post,
+    jwt
   } = props;
 
   
@@ -22,7 +23,7 @@ const ModalPost = (props) => {
 
   const [modal, setModal] = useState(isOpen);
 
-  const toggle = () =>  setModal(false);
+  const toggle = () =>  setModal(!modal);
   
   const lanza = () => {
     
@@ -32,15 +33,11 @@ const ModalPost = (props) => {
         image_url: image_url.value,
     }
 
-    dispatch(updateAction(articulo,post.id));
-    
-    dispatch(findArticulos());
-    dispatch(getAll());
+    dispatch(updateAction(jwt,articulo,post.id));
 
   } 
 
   const cerrar = () => {
-    
     dispatch(findArticulos())
   } 
 

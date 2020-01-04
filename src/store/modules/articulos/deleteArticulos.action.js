@@ -22,10 +22,10 @@ const deleteVoidActionCreator = (data) =>  ({
     payload: false
 });
 
-export const deleteActionsAsyncCreator = (id) => {
+export const deleteActionsAsyncCreator = (jwt,id) => {
     return (dispatch) => {
         dispatch(deleteSolicitudActionCreator())
-        deleteService( id).then(data => {
+        deleteService(jwt, id).then(data => {
             dispatch(deleteEjecucionActionCreator(data.data));
             dispatch(deleteResponseActionCreator());
             dispatch(deleteVoidActionCreator());

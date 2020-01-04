@@ -12,6 +12,7 @@ const ArticuloCreate = (props) => {
     const description = useInput('','description');
     const image_url = useInput('','image_url');
     const message = useSelector(store => store.articulos.create.success );
+    const jwt = useSelector(store => store.auth.logueo.data );
  
     const guardarArticulo = () =>{
         
@@ -20,7 +21,7 @@ const ArticuloCreate = (props) => {
             description: description.value,
             image_url: image_url.value
         }
-        dispatch(createAction(articulo)) ;
+        dispatch(createAction(jwt,articulo)) ;
     }
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import { ARTICULO_SOLICITUD, ARTICULO_GET, ARTICULO_RESPONSE  } from './const';
+import { ARTICULO_SOLICITUD, ARTICULO_GET, ARTICULO_RESPONSE,ARTICULO_GET_ERROR  } from './const';
 
 import { getService } from '../../../services/articulo.services';
 const solicitudActionCreator = () => ({
@@ -16,6 +16,11 @@ const responseActionCreator = () => ({
     payload:false
 })
 
+const getErrorActionCreator = (data) => ({
+    type:ARTICULO_GET_ERROR,
+    payload:data
+})
+
 export const getActionsAsyncCreator = () => {
     return (dispatch) => {
         dispatch(solicitudActionCreator());
@@ -26,7 +31,8 @@ export const getActionsAsyncCreator = () => {
 
             dispatch(responseActionCreator());
         }).catch(err => {
-            console.log(err);
+            
+            dispatch(getErrorActionCreator(err));
         })
     }
 }
